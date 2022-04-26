@@ -1,0 +1,154 @@
+<!doctype html>
+
+
+<!-- xavier caldwell -->
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+	<meta name="description" content="A Bootstrap Website for a pet sitting service">
+    <meta name="keywords" content="dog, cat, sitting, pets, petsitting">
+    <meta name="author" content="Xavier Caldwell">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+   
+
+
+    <link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
+
+    <title>Spot Pet Sitting</title>
+  </head>
+  
+  <body>
+    
+
+
+
+    <nav class="navbar myNavBorder sticky-top navbar-expand-lg navbar-light">
+      <a class="navbar-brand" id="brand" href="index.html"><img src="images/resizedBranding.png" id="branding_image" class="round"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="myNavLink" href="index.html">Home</a>
+          </li>
+		  <li class="nav-item">
+            <a class="myNavLink" href="about.html">About</a>
+          </li>
+		  <li class="nav-item">
+            <a class="myNavLink" href="book.html">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="myNavLink" href="faq.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+          <a class="myNavLink"  href="contact.html">Contact Us</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+      
+    <main class="bodyMargin">
+        <h1 class="my-3">Book a Sitter</h1>
+        
+          <form id="book" name="book">
+        <div>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <span id="invalid_first">*</span>
+        </div>
+        <div>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <span id="invalid_last">*</span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="YourEmail@email.com">
+            <span id="invalid_email">*</span>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="XXX-XXX-XXXX">
+            <span id="invalid_phone">*</span>
+        </div>
+        <div>
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" placeholder="0000 Example St">
+          <span id="invalid_address">*</span>
+        </div>
+        <div>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" placeholder="Ex: Id">
+            <span id="invalid_state">*</span>
+        </div>
+        <div>
+            <label for="zip">Zip Code:</label>
+            <input type="text" id="zip" name="zip" placeholder="12345">
+            <span id="invalid_zip">*</span>
+        </div> 
+        <div>
+            <label for="start">Start Date:</label>
+            <input type="date" id="startDay" name="startDay" min="" placeholder="mm/dd/yyyy">
+            <span id="invalid_startDay">*</span>
+        </div>
+        <div>
+          <label for="start">Start Time:</label>
+          <input type="time" id="startTime" name="startTime" placeholder="00:00">
+          <span id="invalid_startTime">*</span>
+        </div>
+        <div>
+            <label for="end">End Date:</label>
+            <input type="date" id="endDay" name="endDay" placeholder="mm/dd/yyyy">
+            <span id="invalid_end">*</span>
+        </div>
+        <div>
+          <label for="start">End Time:</label>
+          <input type="time" id="endTime" name="endTime" placeholder="00:00">
+          <span id="invalid_start">*</span>
+        </div>
+        <div>
+            <label for="pet">What kind of pets do you have?</label><br>
+            <input type="checkbox" id="dog" name="pet" value="dog">
+            <label for="dog">Dog(s)</label><br>
+            <input type="checkbox" id="cat" name="pet" value="cat">
+            <label for="cat">Cat(s)</label><br>
+            <input type="checkbox" id="other" name="pet" value="other">
+            <label for="other">Other</label><span id="otherpets"> *please elaborate in the comments section with what pets you may have.</span><br>
+           
+           
+        </div>
+         
+         
+        <div>
+            <label for="comment">Enter any additional comments, information, or instructions here:</label><br>
+            <textarea id="comment" name="comment" placeholder="Write something.." style="height:300px; width:80%; "></textarea>
+            <span id="invalid_comment">*</span>
+        </div>
+        <div>
+            <input type="button" id="submit" value="Submit">
+        </div>
+          </form>
+        
+  <br><br><br><br>
+
+    	
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>  
+    <script type="text/javascript" src="javascript/booking.js"></script>
+    </main>
+
+    
+   
+
+  </body>
+
+</html>

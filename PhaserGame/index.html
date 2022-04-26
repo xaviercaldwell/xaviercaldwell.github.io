@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>A Gaem</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin-left: 5vw;
+            margin-top: 5vh;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <script type="text/javascript">
+
+        var config = {
+            type: Phaser.AUTO,
+            width: 1400,
+            height: 600,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 900 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            this.load.image('sky', 'assets/swampTiles/2 Background/background.png');
+            this.load.image('bg2', 'assets/swampTiles/2 Background/Layers/2.png');
+            this.load.image('bg3', 'assets/swampTiles/2 Background/Layers/3.png');
+            this.load.image('star', 'assets/star.png');
+            this.load.image('ground', 'assets/swampTiles/1 Tiles/Tile_02.png');
+            this.load.image('TLCorner', 'assets/swampTiles/1 Tiles/Tile_01.png');
+            this.load.image('TRCorner', 'assets/swampTiles/1 Tiles/Tile_03.png');
+            this.load.image('TLDot', 'assets/swampTiles/1 Tiles/Tile_26.png');
+            this.load.image('LeftWall', 'assets/swampTiles/1 Tiles/Tile_16.png');
+            this.load.image('TRDot', 'assets/swampTiles/1 Tiles/Tile_24.png');
+            this.load.image('RightWall', 'assets/swampTiles/1 Tiles/Tile_13.png');
+            this.load.image('box', 'assets/swampTiles/3 Objects/Boxes/4.png');
+            this.load.image('AllRounder', 'assets/swampTiles/1 Tiles/Tile_31.png');
+            this.load.image('BRCorner', 'assets/swampTiles/1 Tiles/Tile_23.png');
+            this.load.image('BLCorner', 'assets/swampTiles/1 Tiles/Tile_21.png');
+            this.load.image('BotWall', 'assets/swampTiles/1 Tiles/Tile_22.png');
+            this.load.image('JutRight', 'assets/swampTiles/1 Tiles/Tile_34.png');
+            this.load.image('BotWallTRDot', 'assets/swampTiles/1 Tiles/Tile_53.png')
+            this.load.image('JutLeft', 'assets/swampTiles/1 Tiles/Tile_32.png')
+            this.load.image('TopBotWall', 'assets/swampTiles/1 Tiles/Tile_33.png')
+            this.load.image('Bush1', 'assets/swampTiles/3 Objects/Bushes/5.png')
+            this.load.image('Bush2', 'assets/swampTiles/3 Objects/Bushes/2.png')
+            this.load.image('Bush3', 'assets/swampTiles/3 Objects/Bushes/3.png')
+            this.load.image('Bush4', 'assets/swampTiles/3 Objects/Bushes/4.png')
+            this.load.image('Ladder1', 'assets/swampTiles/3 Objects/Ladders/4.png')
+            this.load.image('Ladder2', 'assets/swampTiles/3 Objects/Ladders/6.png')
+            this.load.image('Pointer', 'assets/swampTiles/3 Objects/Pointers/3.png')
+            this.load.image('Pointer2', 'assets/swampTiles/3 Objects/Pointers/7.png')
+
+            this.load.image('BrokenTree1', 'assets/swampTiles/3 Objects/Ridges/3.png')
+            this.load.image('BrokenTree2', 'assets/swampTiles/3 Objects/Ridges/6.png')
+            this.load.image('BrokenTree3', 'assets/swampTiles/3 Objects/Ridges/5.png')
+            this.load.image('Fence1', 'assets/swampTiles/3 Objects/Fence/1.png')
+            this.load.image('Fence2', 'assets/swampTiles/3 Objects/Fence/2.png')
+            this.load.image('Fence3', 'assets/swampTiles/3 Objects/Fence/3.png')
+            
+
+
+
+
+
+
+            this.load.image('star', 'assets/star.png');
+            this.load.image('bomb', 'assets/bomb.png');
+            this.load.spritesheet('dude',
+                'assets/dude.png',
+                { frameWidth: 32, frameHeight: 48 }
+            )
+            this.load.spritesheet('box',
+                'assets/swampTiles/3 Objects/Boxes/4.png',
+                { frameWidth: 32, frameHeight: 32 }
+            )
+            //  this.load.spritesheet('jump',
+            //      'assets/charSprites/1 Woodcutter/Woodcutter_jump.png',
+            //     { frameWidth: 48, frameHeight: 48 }
+            //   );
+        }
+
+        var platforms;
+        var score = 0;
+        var scoreText;
+        var win;
+
+        function create() {
+            this.add.image(700, 300, 'sky');
+            star = this.physics.add.staticGroup();
+            gameEnder = this.physics.add.staticGroup();
+            bush = this.physics.add.staticGroup();
+            platforms = this.physics.add.staticGroup();
+            platforms = this.physics.add.staticGroup({
+                key: 'ground',
+                repeat: 23,
+                setXY: { x: 16, y: 585, stepX: 32 }
+            });
+            platformset2 = this.physics.add.staticGroup({
+                key: 'ground',
+                repeat: 15,
+                setXY: { x: 992, y: 585, stepX: 32 }
+            });
+
+            platforms.create(784, 585, 'TLDot');
+            platforms.create(784, 553, 'LeftWall');
+            platforms.create(784, 521, 'TLCorner');
+            platforms.create(816, 521, 'TRCorner');
+            platforms.create(816, 553, 'RightWall');
+            platforms.create(816, 585, 'RightWall');
+            platformset2.create(960, 585, 'TLCorner');
+            platforms.create(1150, 475, 'AllRounder')
+            
+            
+            platforms.create(270, 200, 'TRCorner');
+            platforms.create(240, 200, 'ground');
+            platforms.create(210, 200, 'ground');
+            platforms.create(180, 200, 'TLCorner');
+            platforms.create(180, 230, 'BLCorner');
+            platforms.create(210, 230, 'BotWall');
+            platforms.create(240, 230, 'BotWall');
+            platforms.create(270, 230, 'BotWallTRDot');
+            platforms.create(300, 230, 'JutRight');
+            platforms.create(400, 300, 'AllRounder')
+
+            platforms.create(500, 350, 'JutLeft')
+            platforms.create(530, 350, 'TopBotWall')
+            platforms.create(560, 350, 'JutRight')
+
+            platforms.create(600, 400, 'AllRounder')
+            platforms.create(650, 475, 'AllRounder')
+            //star polacekent
+            star.create(530, 410, 'star');
+            star.create(1150, 410, 'star');
+            star.create(200, 100, 'star');
+            //bush and other misc decor placement
+            bush.create(300, 555, 'Bush1')
+            bush.create(400, 279, 'Bush3')
+            bush.create(400, 565, 'Bush2')
+            bush.create(1200, 560, 'Bush4')
+            bush.create(1150, 553, 'Ladder2')
+            bush.create(753, 553, 'Ladder1')
+            bush.create(700, 560, 'Pointer');
+            bush.create(890, 580, 'BrokenTree1');
+            gameEnder.create(880, 590, 'Fence1');
+            gameEnder.create(850, 590, 'Fence2')
+            gameEnder.create(910, 598, 'Fence3')
+            bush.create(965, 560, 'Pointer2')
+            bush.create(825, 496, 'Pointer2')
+
+            
+        
+
+            //player
+            player = this.physics.add.sprite(100, 450, 'dude');
+            box1 = this.physics.add.sprite(500, 550, 'box');
+            box2 = this.physics.add.sprite(1100, 550, 'box');
+            
+
+            player.setCollideWorldBounds(true);
+            box1.setCollideWorldBounds(true);
+            box2.setCollideWorldBounds(true);
+        
+
+
+            this.anims.create({
+                key: 'left',
+                frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'turn',
+                frames: [{ key: 'dude', frame: 4 }],
+                frameRate: 20
+            });
+
+            this.anims.create({
+                key: 'right',
+                frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+
+
+
+
+
+
+
+            cursors = this.input.keyboard.createCursorKeys();
+
+
+            this.physics.add.collider(player, platforms);
+            this.physics.add.collider(player, platformset2);
+            this.physics.add.collider(box1, platforms);
+            this.physics.add.collider(box2, platformset2);
+            this.physics.add.collider(player, box1);
+            this.physics.add.collider(player, box2);
+
+            this.physics.add.overlap(player, star, collectStar, null, this);
+
+            this.physics.add.overlap(player, gameEnder, endGame, null, this);
+         
+
+
+
+            //score text
+            scoreText = this.add.text(16, 16, 'Stars: 0', { fontSize: '32px', fill: '#fff' });
+
+
+
+        };
+
+       
+    
+
+        function update() {
+            if (cursors.left.isDown) {
+                player.setVelocityX(-160);
+
+                player.anims.play('left', true);
+            }
+            else if (cursors.right.isDown) {
+                player.setVelocityX(160);
+
+                player.anims.play('right', true);
+            }
+            else {
+                player.setVelocityX(0);
+
+                player.anims.play('turn');
+            }
+
+            if (cursors.up.isDown && player.body.touching.down) {
+                player.setVelocityY(-400);
+            }
+
+            
+
+            box1.setVelocityX(0);
+            box1.setVelocityY(0);
+            box2.setVelocityX(0);
+            box2.setVelocityY(0);
+
+           
+
+
+
+        };
+
+        function collectStar (player, star)
+{
+    star.disableBody(true, true);
+
+    score += 1;
+    scoreText.setText('Stars: ' + score);
+    if(score == 3){
+        winText = this.add.text(684, 284, 'You Win', { fontSize: '56px', fill: '#fff' });  
+        this.physics.pause();
+    }
+}
+function endGame (player, gameEnder)
+{
+    loseText =  this.add.text(684, 284, 'Game Over', { fontSize: '56px', fill: '#fff' });  
+    this.physics.pause()
+}
+
+   
+
+
+
+    </script>
+
+</body>
+
+</html>
